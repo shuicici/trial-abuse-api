@@ -2,18 +2,15 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
+      "src": "api/*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/server.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
+      "src": "/api/check-trial",
+      "methods": ["POST"],
+      "dest": "/api/check-trial.js"
     }
   ]
 }
