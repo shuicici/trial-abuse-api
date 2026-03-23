@@ -1,0 +1,120 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "TrialGuard API",
+    "description": "A service to detect and prevent trial abuse by analyzing email domains and usage patterns.",
+    "version": "1.0.0",
+    "x-rapidapi-category": "Verification",
+    "x-rapidapi-public": "true",
+    "x-rapidapi-image": "https://raw.githubusercontent.com/openclaw/openclaw/main/docs/logo.png"
+  },
+  "servers": [
+    {
+      "url": "https://trial-abuse-api.vercel.app",
+      "description": "Production server (Vercel)"
+    }
+  ],
+  "paths": {
+    "/api/check-trial": {
+      "post": {
+        "summary": "Check if a user is eligible for a trial",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "format": "email",
+                    "description": "The user's email address to check"
+                  }
+                },
+                "required": ["email"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "allowed": {
+                      "type": "boolean",
+                      "description": "True if the trial is allowed"
+                    },
+                    "suspicious": {
+                      "type": "boolean",
+                      "description": "True if the request is flagged as suspicious"
+                    },
+                    "reason": {
+                      "type": "string",
+                      "description": "Reason for denial, if any"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "Human-readable status message"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request - Missing or invalid email"
+          }
+        }
+      }
+    },
+    "/api/trial-history/{email}": {
+      "get": {
+        "summary": "Get trial history for a specific email",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "path",
+            "required": true,
+            "description": "The email address to look up",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of trial records",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "records": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "integer" },
+                          "email": { "type": "string" },
+                          "created_at": { "type": "string", "format": "date-time" },
+                          "is_suspicious": { "type": "integer", "enum": [0, 1] }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,8 @@
 {
   "name": "trial-abuse-api",
   "version": "1.0.0",
-  "type": "module",
+  "description": "Anti-trial abuse API",
+  "main": "server.js",
   "private": true,
   "engines": {
     "node": ">=18"

@@ -31,7 +31,8 @@
 |------|------|--------|
 | 第1天 | 核心API开发 | trialguard-api 代码 |
 | 第2天 | 部署上线 | API端点可访问 |
-| 第3天 | 找首批用户 | IndieHackers发帖 |
+| 第3天 | 市场分发 | 发布至 RapidAPI (via Distribution agent) |
+| 第4天 | 找首批用户 | IndieHackers发帖 |
 
 ## 付费点设计
 
