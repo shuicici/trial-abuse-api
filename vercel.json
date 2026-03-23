@@ -1,16 +1,3 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/check-trial",
-      "methods": ["POST"],
-      "dest": "/api/check-trial.js"
-    }
-  ]
+  "version": 2
 }
