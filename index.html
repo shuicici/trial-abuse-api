@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrialGuard - Stop SaaS Trial Abuse | Save $50-500/month</title>
+  <meta name="description" content="Detect and block trial abusers before they cost you money. AI-powered device fingerprinting and email risk analysis.">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #10b981;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --light: #f8fafc;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--dark);
+      background: var(--light);
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Header */
+    header {
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .logo span { color: var(--dark); }
+    
+    nav a {
+      color: var(--gray);
+      text-decoration: none;
+      margin-left: 24px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    
+    nav a:hover { color: var(--primary); }
+    
+    .cta-btn {
+      background: var(--primary);
+      color: white !important;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-left: 24px;
+    }
+    
+    .cta-btn:hover { background: var(--primary-dark); }
+    
+    /* Hero */
+    .hero {
+      padding: 80px 0;
+      text-align: center;
+      background: linear-gradient(180deg, #fff 0%, var(--light) 100%);
+    }
+    
+    .hero h1 {
+      font-size: 48px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--dark);
+    }
+    
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      color: var(--gray);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 48px;
+    }
+    
+    .stat {
+      text-align: center;
+    }
+    
+    .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      color: var(--primary);
+    }
+    
+    .stat-label {
+      font-size: 14px;
+      color: var(--gray);
+    }
+    
+    /* Features */
+    .features {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .features h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 48px;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    
+    .feature-card {
+      padding: 32px;
+      border-radius: 12px;
+      background: var(--light);
+      border: 1px solid #e2e8f0;
+    }
+    
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .feature-card p {
+      color: var(--gray);
+      font-size: 14px;
+    }
+    
+    /* How It Works */
+    .how-it-works {
+      padding: 80px 0;
+      background: var(--dark);
+      color: white;
+    }
+    
+    .how-it-works h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 48px;
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    
+    .step {
+      text-align: center;
+    }
+    
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      margin: 0 auto 16px;
+    }
+    
+    .step h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .step p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+    
+    /* Pricing */
+    .pricing {
+      padding: 80px 0;
+      background: white;
+    }
+    
+    .pricing h2 {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    
+    .pricing-subtitle {
+      text-align: center;
+      color: var(--gray);
+      margin-bottom: 48px;
+    }
+    
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .price-card {
+      padding: 32px;
+      border-radius: 12px;
+      border: 2px solid #e2e8f0;
+      text-align: center;
+    }
+    
+    .price-card.popular {
+      border-color: var(--primary);
+      position: relative;
+    }
+    
+    .price-card.popular::before {
+      content: 'Most Popular';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--primary);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    
+    .price-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    
+    .price {
+      font-size: 40px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    
+    .price span {
+      font-size: 16px;
+      font-weight: 400;
+      color: var(--gray);
+    }
+    
+    .price-card ul {
+      list-style: none;
+      margin: 24px 0;
+      text-align: left;
+    }
+    
+    .price-card li {
+      padding: 8px 0;
+      color: var(--gray);
+      font-size: 14px;
+    }
+    
+    .price-card li::before {
+      content: '✓';
+      color: var(--secondary);
+      margin-right: 8px;
+      font-weight: 700;
+    }
+    
+    .price-btn {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    
+    .price-btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .price-btn.primary:hover { background: var(--primary-dark); }
+    
+    .price-btn.outline {
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .price-btn.outline:hover { background: var(--primary); color: white; }
+    
+    /* CTA */
+    .cta {
+      padding: 80px 0;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      text-align: center;
+      color: white;
+    }
+    
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    
+    .cta p {
+      font-size: 18px;
+      opacity: 0.9;
+      margin-bottom: 32px;
+    }
+    
+    .cta .cta-btn {
+      background: white;
+      color: var(--primary) !important;
+      font-size: 18px;
+      padding: 16px 32px;
+    }
+    
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      background: var(--dark);
+      color: #64748b;
+      text-align: center;
+      font-size: 14px;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 32px; }
+      .hero-stats { flex-direction: column; gap: 24px; }
+      .feature-grid, .steps, .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo">Trial<span>Guard</span></a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://rapidapi.com/trialguard" class="cta-btn">Get API Key</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Stop Trial Abuse.<br><span>Save $50-500/month.</span></h1>
+      <p>AI-powered detection of users who exploit your free trials. Device fingerprinting + email risk analysis = zero tolerance for abusers.</p>
+      <a href="#pricing" class="cta-btn" style="display: inline-block; padding: 14px 28px; font-size: 16px;">Start Free Trial</a>
+      
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-value">73%</div>
+          <div class="stat-label">of free trials are abused</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">$200</div>
+          <div class="stat-label">Average loss per abuser</div>
+        </div>
+        <div class="stat">
+          <div class="stat-value">&lt;50ms</div>
+          <div class="stat-label">API response time</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="container">
+      <h2>Why TrialGuard?</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Device Fingerprinting</h3>
+          <p>Identify users across multiple accounts with advanced browser fingerprinting technology.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📧</div>
+          <h3>Email Risk Analysis</h3>
+          <p>Detect disposable emails, role-based emails, and known abuser domains instantly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Real-time Detection</h3>
+          <p>Block abusers at signup with sub-50ms API response. No latency for your users.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Risk Scoring</h3>
+          <p>Get detailed risk scores (0-100) with breakdown of trust signals.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h3>Easy Integration</h3>
+          <p>RESTful API with SDKs for Node.js, Python, Ruby, and more.</p>
+        </div>
+        <div class="feature-card">
+          <div name="feature-icon">💰</div>
+          <h3>Pay Per Use</h3>
+          <p>No monthly fees. Pay only for what you use. Starts at $0.001 per check.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-it-works" id="how-it-works">
+    <div class="container">
+      <h2>How It Works</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Collect Signal</h3>
+          <p>Send email + device fingerprint (optional) to our API at user signup.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Get Risk Score</h3>
+          <p>We analyze against 10M+ known abuser patterns and return a score.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Block or Allow</h3>
+          <p>Use our decision or apply your own thresholds. Webhook alerts available.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2>Simple, Pay-Per-Use Pricing</h2>
+      <p class="pricing-subtitle">No monthly fees. No commitments. Start free, pay as you grow.</p>
+      
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Starter</h3>
+          <div class="price">$0<span>/month</span></div>
+          <ul>
+            <li>1,000 API calls/month</li>
+            <li>Email risk analysis</li>
+            <li>Basic device fingerprinting</li>
+            <li>Email support</li>
+          </ul>
+          <a href="https://rapidapi.com/trialguard" class="price-btn outline">Get Started</a>
+        </div>
+        
+        <div class="price-card popular">
+          <h3>Growth</h3>
+          <div class="price">$29<span>/month</span></div>
+          <ul>
+            <li>50,000 API calls/month</li>
+            <li>Advanced fingerprinting</li>
+            <li>Risk score + breakdown</li>
+            <li>Webhook alerts</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="https://rapidapi.com/trialguard" class="price-btn primary">Get Started</a>
+        </div>
+        
+        <div class="price-card">
+          <h3>Enterprise</h3>
+          <div class="price">Custom</div>
+          <ul>
+            <li>Unlimited API calls</li>
+            <li>Custom risk models</li>
+            <li>Dedicated infrastructure</li>
+            <li>SLA guarantee</li>
+            <li>24/7 phone support</li>
+          </ul>
+          <a href="mailto:hello@trialguard.io" class="price-btn outline">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to stop trial abuse?</h2>
+      <p>Join 100+ SaaS companies saving thousands per month.</p>
+      <a href="https://rapidapi.com/trialguard" class="cta-btn">Get Your Free API Key</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 TrialGuard. Built for SaaS founders, by SaaS founders.</p>
+    </div>
+  </footer>
+</body>
+</html>
