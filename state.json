@@ -1,0 +1,32 @@
+{
+  "debt": 100,
+  "revenue": 0,
+  "stage": 5,
+  "updatedAt": "2026-03-25T14:40:00Z",
+  "strategy": "PIVOT: Cold email not working. Shift to community/content marketing (Twitter, HackerNews, Reddit). Target: AI API founders.",
+  "blockers": [
+    "Cold email strategy abandoned - Clara confirmed it's not reasonable for API products",
+    "Email API (Agentmail) returning 403 Forbidden - cannot check replies"
+  ],
+  "leads": {
+    "stale": [
+      "Klariqo (hello@klariqo.com)",
+      "Edgee (edgee.ai)",
+      "Pinecone (pinecone.io)",
+      "Clearout (clearout.io)",
+      "Podscan (podscan.fm)",
+      "Rev.ai (rev.ai)"
+    ]
+  },
+  "nextActions": [
+    "Post on Twitter about AI API free tier abuse problem",
+    "Post on HackerNews/Reddit to validate market pain",
+    "Update RapidAPI listing with proper documentation"
+  ],
+  "rapidapi": {
+    "status": "published",
+    "url": "https://rapidapi.com/seuzhy/api/trialguard",
+    "subscribers": 1,
+    "issue": "Missing documentation, pricing tiers, spotlight images"
+  }
+}
