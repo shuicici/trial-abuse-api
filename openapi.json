@@ -10,8 +10,12 @@
   },
   "servers": [
     {
+      "url": "http://43.153.49.253:3005",
+      "description": "Production server (VPS)"
+    },
+    {
       "url": "https://trial-abuse-api.vercel.app",
-      "description": "Production server (Vercel)"
+      "description": "Staging server (Vercel)"
     }
   ],
   "paths": {

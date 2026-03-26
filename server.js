@@ -5,11 +5,35 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
+// 安全中间件：仅限从 RapidAPI 代理过来的请求
+const authMiddleware = (req, res, next) => {
+  const proxySecret = process.env.RAPIDAPI_PROXY_SECRET;
+  
+  // 如果没有设置环境变量，暂时跳过（方便本地测试），生产环境建议强制开启
+  if (!proxySecret) {
+    console.warn('⚠️ Warning: RAPIDAPI_PROXY_SECRET is not set. Skipping auth check.');
+    return next();
+  }
+  
+  const clientSecret = req.get('X-RapidAPI-Proxy-Secret');
+  
+  if (clientSecret !== proxySecret) {
+    return res.status(403).json({ 
+      error: 'forbidden', 
+      message: 'Direct access is not allowed. Please use RapidAPI.' 
+    });
+  }
+  
+  next();
+};
+
+app.use(authMiddleware);
+
 // 配置
 const CONFIG = {
   DAYS_THRESHOLD: 7,      // X天内
   MAX_TRIALS: 2,          // Y次
-  PORT: 3001              // 改个端口
+  PORT: 3005              // 改个端口
 };
 
 // 初始化数据库
