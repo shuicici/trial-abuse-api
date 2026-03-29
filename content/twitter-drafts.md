@@ -1,36 +1,40 @@
-# Twitter Content Drafts - AI API Free Tier Focus
+# Twitter Content Drafts - AI API Cost Guard Pivot
 
-## Post 1 (Hook - AI API specific) 🔥
-Google killed Gemini's free tier. Twitter killed free API access.
+## Post 1 (Hook - Financial Damage Angle) 🔥
+Google Gemini: "We killed free tier because abuse costs too much"
+Twitter API: Same story
+My own API: same
 
-Why? Abuse. People creating multiple accounts to max out free limits.
+Real story: attackers can run up $10,000+ in charges within HOURS on AI APIs.
 
-Sound familiar? If you run an AI API with free tier, this is your nightmare.
+This is the biggest unfixed attack surface in AI infra rn.
 
-I built TrialGuard to detect abusers before they cost you 💰
+## Post 2 (The Math)
+AI API abuse math:
+- Attacker creates 10 accounts
+- Each uses $50-500/month in free compute
+- You eat the cost = $500-5000/month per attacker
+- Multiply by 100 attackers = $50K-500K/year
 
-## Post 2 (Problem for AI API founders)
-AI API founders face a brutal tradeoff:
-- No free tier → lose users to competitors who have one
-- Free tier → get abused by people creating 10 accounts
+This isn't a tech problem. It's a financial emergency.
 
-Each abuser costs you $50-500/month in compute. Multiply that by hundreds of accounts.
+I built TrialGuard to solve it.
 
-73% of free trial signups show abuse patterns.
+## Post 3 (How it works)
+How TrialGuard protects your AI API:
+1. User tries to sign up
+2. We fingerprint their device + analyze email risk
+3. Return in <50ms: "allowed" or "blocked" + reason
 
-What's the solution? Device fingerprinting + email risk analysis.
+Blocks:
+- Multiple accounts per device
+- Disposable emails
+- Proxy/VPN IPs
+- Known abuser fingerprints
 
-## Post 3 (Product demo)
-How it works:
-1. User signs up with email
-2. We check device fingerprint + email risk
-3. Return: "allowed" or "blocked" with reason
+Works client-side. No cookies. Start at $0.001 per check.
 
-<50ms response time. Works client-side, no cookies needed.
-
-Built it after I lost $200/month to trial abusers on my own product.
-
-## Post 4 (Social proof / Question)
+## Post 4 (Open question)
 Hot take: Most AI API companies will have to kill their free tiers within 2 years because of abuse.
 
 The alternative: detect and block abusers, keep serving legitimate users.
@@ -44,16 +48,24 @@ Drop your product in replies — I'll check it for free and tell you how many ab
 
 No pitch, just data. 🧵
 
+## Post 6 (Proof point)
+73% of free trial signups show abuse patterns.
+
+Most founders don't even know it's happening until they see the bill.
+
+TrialGuard makes it visible. $0.001 per check. Free tier available.
+
 ---
 
-## Thread Structure
-1. Hook (Google/Twitter example) → get attention
-2. Problem (AI API founders' pain) → establish relevance
+## Thread Structure (Revised)
+1. Hook (Google/Twitter examples, $10K+ damage) → get attention
+2. The math (real dollar amounts) → establish urgency
 3. Solution (how TrialGuard works) → demonstrate value
 4. Discussion (open question) → drive engagement
 5. Lead gen (offer free analysis) → convert interest
+6. Proof (73% stat) → build credibility
 
 ## Timing
 - Post when AI Twitter is active (US morning / EU afternoon)
 - Engage with replies in first 30 min
-- Quote tweet relevant discussions
+- Quote tweet relevant AI API discussions
