@@ -112,6 +112,74 @@ app.get('/api/trial-history/:email', (req, res) => {
   res.json({ email: normalizedEmail, records });
 });
 
+// API: 估算节省成本 (AI API Cost Guard 定位)
+app.get('/api/estimate-savings', (req, res) => {
+  const {
+    avgCallCost = '0.0001',
+    monthlyFreeTierUsers = '100',
+    abuseRate = '0.10',
+    avgCallsPerAbuser = '10000'
+  } = req.query;
+
+  const cost = parseFloat(avgCallCost);
+  const users = parseInt(monthlyFreeTierUsers);
+  const abuseRateNum = parseFloat(abuseRate);
+  const callsPerAbuser = parseInt(avgCallsPerAbuser);
+
+  // Validation
+  if (isNaN(cost) || isNaN(users) || isNaN(abuseRateNum) || isNaN(callsPerAbuser)) {
+    return res.status(400).json({
+      error: 'Invalid parameters',
+      message: 'All parameters must be valid numbers',
+      example: '/api/estimate-savings?avgCallCost=0.0001&monthlyFreeTierUsers=100&abuseRate=0.10&avgCallsPerAbuser=10000'
+    });
+  }
+
+  if (cost <= 0 || users <= 0 || abuseRateNum < 0 || abuseRateNum > 1 || callsPerAbuser <= 0) {
+    return res.status(400).json({
+      error: 'Invalid parameter range',
+      message: 'avgCallCost and callsPerAbuser must be > 0, abuseRate must be 0-1, monthlyFreeTierUsers must be > 0'
+    });
+  }
+
+  // Calculate losses
+  const numAbusers = Math.round(users * abuseRateNum);
+  const costPerAbuser = callsPerAbuser * cost;
+  const monthlyLoss = numAbusers * costPerAbuser;
+  const yearlyLoss = monthlyLoss * 12;
+
+  // Industry benchmarks
+  const detectionRate = 0.85;
+  const preventionRate = 0.90;
+
+  const preventedMonthly = monthlyLoss * detectionRate * preventionRate;
+  const preventedYearly = preventedMonthly * 12;
+
+  // Pricing tiers
+  const apiCallsNeeded = users * 30;
+  const ourPrice = apiCallsNeeded <= 50000 ? 29 : 99;
+  const roi = (preventedYearly - (ourPrice * 12));
+
+  return res.json({
+    input: { avgCallCost: cost, monthlyFreeTierUsers: users, abuseRate: abuseRateNum, avgCallsPerAbuser },
+    problem: {
+      estimatedAbusers: numAbusers,
+      monthlyLossFromAbuse: monthlyLoss.toFixed(2),
+      yearlyLossFromAbuse: yearlyLoss.toFixed(2),
+      costPerAbuser: costPerAbuser.toFixed(2)
+    },
+    solution: {
+      detectionRate: (detectionRate * 100) + '%',
+      preventionRate: (preventionRate * 100) + '%',
+      preventedYearly: preventedYearly.toFixed(2)
+    },
+    pricing: { monthlyPrice: ourPrice, yearlyPrice: ourPrice * 12 },
+    roi: { yearlyProfit: roi.toFixed(2), roiMultiple: (preventedYearly / (ourPrice * 12)).toFixed(1) + 'x' },
+    verdict: roi > 0 ? `Positive ROI: Save $${Math.round(roi)}/year` : `Scale needed for positive ROI at this abuse level`,
+    endpoint: 'https://trial-abuse-api.vercel.app/api/check-trial'
+  });
+});
+
 // 启动服务
 app.listen(CONFIG.PORT, () => {
   console.log(`🚀 Trial checker running at http://localhost:${CONFIG.PORT}`);
